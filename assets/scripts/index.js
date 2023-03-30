@@ -9,7 +9,6 @@ import { getCookie, setCookie, deleteCookie, date } from './cookies.js';
 
 const sHeight = screen.height;
 const sWidth = screen.width;
-console.log(document.cookie);
 
 function getOS(){
   return navigator.userAgentData.platform;
@@ -36,8 +35,8 @@ const checkHeigth = document.querySelector('.chk-heigth');
 btnAccept.addEventListener('click', () => {
   document.cookie = `Browser=${encodeURIComponent(getBrowser())}; path=/; max-age=15; SameSite=Lax`;
   document.cookie = `System=${encodeURIComponent(getOS())}; path=/; max-age=15; SameSite=Lax`;
-  document.cookie = `Screen Height=${encodeURIComponent(sHeight)}; path=/; max-age=15; SameSite=Lax`;
   document.cookie = `Screen Width=${encodeURIComponent(sWidth)}; path=/; max-age=15; SameSite=Lax`;
+  document.cookie = `Screen Height=${encodeURIComponent(sHeight)}; path=/; max-age=15; SameSite=Lax`;
   modal.style.display = "none";  
 });
 
@@ -48,11 +47,25 @@ btnSettings.addEventListener('click', () => {
 
 btnPreferences.addEventListener('click', () => {
   modal.style.display = "none"; 
+  document.cookie = `Browser=${encodeURIComponent(getBrowser())}; path=/; max-age=15; SameSite=Lax`;
   // check checkbox values
-  if(!checkBrowser.checked) { setCookie('Browser', 'rejected', {'max-age': 15}); }
-  if(!checkSystem.checked) { setCookie('System', 'rejected', {'max-age': 15}); }
-  if(!checkWidth.checked) { setCookie('Screen Width', 'rejected', {'max-age': 15}); }
-  if(!checkHeigth.checked) { setCookie('Screen Height', 'rejected', {'max-age': 15}); }
+  if(!checkSystem.checked) { 
+    document.cookie = `System=rejected; path=/; max-age=15; SameSite=Lax`;
+  } else {
+    document.cookie = `System=${encodeURIComponent(getOS())}; path=/; max-age=15; SameSite=Lax`;
+  }
+
+  if(!checkWidth.checked) { 
+    document.cookie = `Screen Width=rejected; path=/; max-age=15; SameSite=Lax`;
+  } else {
+    document.cookie = `Screen Width=${encodeURIComponent(sWidth)}; path=/; max-age=15; SameSite=Lax`;
+  }
+
+  if(!checkHeigth.checked) { 
+    document.cookie = `Screen Height=rejected; path=/; max-age=15; SameSite=Lax`;
+  } else {
+    document.cookie = `Screen Height=${encodeURIComponent(sHeight)}; path=/; max-age=15; SameSite=Lax`;
+  }
 });
 
 // Open modal
@@ -79,3 +92,8 @@ document.addEventListener('keydown', function(e){
     }
 });
 
+console.log(document.cookie);
+//console.log(document.cookie.split('; ').at(0));
+//console.log(document.cookie.split('; ').at(1));
+//console.log(document.cookie.split('; ').at(2));
+//console.log(document.cookie.split('; ').at(3));
