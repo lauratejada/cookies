@@ -1,0 +1,262 @@
+@import url(reset.css);
+
+body {
+    background: rgb(0, 21, 138);
+    background: center center / cover no-repeat url("../images/mosaic.jpg") rgb(0, 16, 97) ;
+    background-blend-mode: multiply;
+    color: #eee;
+}
+  
+/* ------------------------------- */
+/* CSS Page Container              */
+/* ------------------------------- */
+
+.container {
+    width: min(100% - 30px, 1080px);
+    /* the classic style to center a div 
+    margin: 0 auto: */
+    margin-inline: auto;
+}
+
+/* ------------------------------- */
+/* Main                          */
+/* ------------------------------- */
+
+main {
+    height: 100vh;/*calc(100vh - 140px);*/
+    overflow: hidden;
+    color: #2b2b2b;
+    display: grid;
+    place-items: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+#modal-2{
+    display: none;
+}
+  
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+  
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+  
+.modal-header {
+    background-color: #fefefe;
+}
+  
+.modal-body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.modal-body > label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.checkbox {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 60px;
+    height: 30px;
+    background-color: #c407c4;
+    overflow: hidden;
+    box-shadow: inset 0 10px 25px rgba(0, 0, 0, .5), 0px 1px 2px #fff;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.checkbox input {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+}
+
+.checkbox label {
+    background-color: #151b29;
+    background-image: linear-gradient(-40deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2));
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font: bold 10px/28px Arial, Sans-Serif;
+    color: transparent;
+    transition: margin-left 0.2s ease-in-out;
+    margin: 1px;
+}
+
+.checkbox label:before {
+    content: attr(data-off);
+}
+
+.checkbox input:checked + label {
+    margin-left: 29px;
+    background-color: #ffffff;
+    color: #ffffff;
+}
+.checkbox input:checked + label:before {
+    content: attr(data-on);
+}
+
+.modal-footer {
+    background-color: #fefefe;
+    display: flex;
+    margin-top: 10px;
+}
+
+button {
+    width: 50%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 40px;
+    background-color: #3F87FA;
+    color: #fff;
+    border-radius: 50px;
+    border-color: #fff;
+    padding: 0 25px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+button ~ button {
+    margin-left: 5px;
+}
+
+button:hover {
+    opacity: 0.6;
+    /*
+    background-color: rgb(255, 255, 255);
+    color: #3F87FA;
+    border-color: 1px solid #3F87FA;
+    */
+}
+
+.btn-settings {
+    background-color: #fff;
+    color: #3F87FA;
+    border: 1px solid #3F87FA;
+}
+
+.btn-preferences {
+    width: 80%;
+}
+
+.row {
+    display: flex;
+    margin-top: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.column {
+    width: 100%;
+    height: 200px;
+    border-radius: 1%;
+    box-shadow: 1px 1px 2px rgba (0 0 0 / 0.1);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.column ~ .column {
+    margin-left: 30px;
+}
+
+.button-center button {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 40px;
+    background-color: #3F87FA;
+    color: #fff;
+    border-radius: 50px;
+    border-color: #fff;
+    padding: 0 50px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.button-center button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 53, 114);
+    border-color: #fff;
+}
+
+.title-middle h1 {
+    font-size: 26px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    line-height: 40px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.col {
+    width: 50%;
+    text-align: center;
+}
+
+[data-animation-offset] {
+    animation: trans 0.5s ease-in;
+}
+
+[data-animation-offset="first"] { animation-delay: 0.1s; }
+[data-animation-offset="second"] { animation-delay: 0.3s; }
+
+@keyframes trans {
+    from {
+        opacity: 0;
+        translate: 0 -20px;
+    } to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
