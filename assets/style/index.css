@@ -58,7 +58,7 @@ main {
 }
 
 #modal-2{
-    display: none;
+   /* display: none; */
 }
   
 @-webkit-keyframes animatetop {
