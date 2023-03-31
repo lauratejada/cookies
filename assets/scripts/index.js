@@ -21,6 +21,7 @@ function getBrowser() {
 // Modals
 
 const modal = document.querySelector('.modal');
+const dialog = document.querySelector('dialog');
 const btnSettings = document.querySelector('.btn-settings');
 const modalOne = document.querySelector('#modal-1');
 const modalTwo = document.querySelector('#modal-2');
@@ -37,16 +38,22 @@ btnAccept.addEventListener('click', () => {
   document.cookie = `System=${encodeURIComponent(getOS())}; path=/; max-age=15; SameSite=Lax`;
   document.cookie = `Screen Width=${encodeURIComponent(sWidth)}; path=/; max-age=15; SameSite=Lax`;
   document.cookie = `Screen Height=${encodeURIComponent(sHeight)}; path=/; max-age=15; SameSite=Lax`;
-  modal.style.display = "none";  
+  modal.style.display = "none";
+  modalOne.close();
+ // dialog.close();
 });
 
-btnSettings.addEventListener('click', () => {
-  modalTwo.style.display = "block";
-  modalOne.style.display = "none";  
+btnSettings.addEventListener('click', function() {
+  modal.style.display = "grid";
+  modalTwo.showModal();
+  modalOne.close();  //style.display = "none";
+//.style.display = "block";
 });
 
-btnPreferences.addEventListener('click', () => {
+btnPreferences.addEventListener('click', function() {
   modal.style.display = "none"; 
+  modalOne.close();
+  modalTwo.close();
   document.cookie = `Browser=${encodeURIComponent(getBrowser())}; path=/; max-age=15; SameSite=Lax`;
   // check checkbox values
   if(!checkSystem.checked) { 
@@ -71,6 +78,7 @@ btnPreferences.addEventListener('click', () => {
 // Open modal
 function openModal() {
   modal.style.display = "grid";
+  modalOne.showModal();
 }
 
 // check cookies available before open the modal
@@ -82,6 +90,8 @@ function checkCookies() {
 window.addEventListener('click', (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
+    modalOne.close();
+    modalTwo.close();
   }
 });
 
@@ -89,6 +99,8 @@ document.addEventListener('keydown', function(e){
     //console.log(e.code);
     if (e.code === "Escape") {
         modal.style.display = "none";
+        modalOne.close();
+        modalTwo.close();
     }
 });
 
